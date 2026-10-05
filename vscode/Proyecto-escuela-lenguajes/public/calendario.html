@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="World School - Agenda tu clase">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calendario.css">
+    <title>World School - Agendar Clase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css"> -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/es.js"></script>
+    
+</head>
+<body>
+    <header class="cabezar">
+        <div class="logo-container">
+            <img class="logo" src="img/cabeza.jpg" alt="World School Logo">
+            <h1 class="logo-text">World School</h1>
+        </div>
+        <nav class="arriba">
+            <ul class="lista">    
+                <li><a href="index.html" class="link">Home</a></li>
+                <li><a href="calendario.html" class="link calendar-btn active">Agendar Clase</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+
+    <main class="calendario-main">
+       <section class="presentacion-contacto">
+    <div class="presentacion-card">
+        <div class="presentacion-content">
+            <div class="badge">Comunidad e informacion </div>
+            <h2>Comunidad de WhatsApp</h2>
+            <p>Únete para recibir material de apoyo exclusivo, avisos de clase y resolver dudas con la comunidad.</p>
+            
+            <div class="contacto-footer">
+                <a href="https://wa.me/524779097653?text=Hola%20World%20School,%20me%20interesa%20saber%20más%20sobre%20sus%20clases%20de%20inglés" 
+                   class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Unirme al Grupo
+                </a>
+                <div class="info-texto">
+                    <span><i class="fas fa-phone-alt"></i> 477 909 7653</span>
+                    <span><i class="far fa-clock"></i> Atención 24/7</span>
+                </div>
+            </div>
+        </div>
+        <div class="presentacion-visual">
+            <div class="icon-circle">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- <section class="calendario-section">
+            <div class="calendario-container">
+                <div class="calendario-header">
+                    <h2>Reserva tu Clase al Instante</h2>
+                    <p>Haz clic en un día y luego selecciona la hora para agendar.</p>
+                </div>
+
+                <div class="calendario-content">
+                    <div class="calendario-card full-width">
+                        <div class="calendario-controls">
+                            <div class="month-navigation">
+                                <button id="prevMonth" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+                                <h3 id="currentMonth"></h3>
+                                <button id="nextMonth" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="calendar-wrapper">
+                            <div id="calendar"></div>
+                        </div>
+
+                        <div class="time-slots-section" id="timeSlotsSection" style="display: none;">
+                            <h4><i class="fas fa-clock"></i> Horarios Disponibles para el <span id="fechaTexto"></span></h4>
+                            <div class="slots-grid" id="timeSlots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="calendario-modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>¡Cita Agendada!</h3>
+            <div class="modal-details">
+                <p><strong>Fecha:</strong> <span id="modalFecha"></span></p>
+                <p><strong>Hora:</strong> <span id="modalHora"></span></p>
+            </div>
+            <p>Tu clase ha sido marcada en el calendario exitosamente.</p>
+            <div class="modal-actions">
+                <button class="modal-btn primary" id="closeModal">Entendido</button>
+                <button class="modal-btn secondary" id="newAppointment">Agendar Otra</button>
+            </div>
+        </div>
+    </div> -->
+
+    
+    
+     <script>
+
+
+        let selectedDate = null;
+        let calendar = null;
+        let citasAgendadas = [];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            
+            // Cargar citas existentes del localStorage
+            const citasGuardadas = localStorage.getItem('citasWorldSchool');
+            if (citasGuardadas) {
+                citasAgendadas = JSON.parse(citasGuardadas);
+            }
+            
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                headerToolbar: false,
+                selectable: true,
+                firstDay: 1,
+                dateClick: function(info) {
+                    showTimeSlots(info.dateStr);
+                },
+                events: citasAgendadas // Cargar citas existentes
+            });
+            
+            calendar.render();
+            updateCurrentMonth();
+
+            // Event listeners
+            document.getElementById('prevMonth').addEventListener('click', () => { 
+                calendar.prev(); 
+                updateCurrentMonth(); 
+            });
+            
+            document.getElementById('nextMonth').addEventListener('click', () => { 
+                calendar.next(); 
+                updateCurrentMonth(); 
+            });
+            
+            document.getElementById('closeModal').addEventListener('click', () => { 
+                document.getElementById('confirmModal').style.display = 'none';
+                document.getElementById('timeSlotsSection').style.display = 'none';
+            });
+            
+            document.getElementById('newAppointment').addEventListener('click', () => {
+                document.getElementById('confirmModal').style.display = 'none';
+                document.getElementById('timeSlotsSection').style.display = 'none';
+                // Ocultar slots seleccionados previamente
+                document.querySelectorAll('.time-slot.selected').forEach(slot => {
+                    slot.classList.remove('selected');
+                });
+            });
+        });
+
+        function updateCurrentMonth() {
+            const date = calendar.getDate();
+            const monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            document.getElementById('currentMonth').textContent = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+function showTimeSlots(dateStr) {
+    selectedDate = dateStr;
+    const section = document.getElementById('timeSlotsSection');
+    const grid = document.getElementById('timeSlots');
+    const dateObj = new Date(dateStr + 'T00:00:00');
+    
+    // Formatear fecha para mostrar
+    const fechaFormateada = dateObj.toLocaleDateString('es-ES', { 
+        weekday: 'long', 
+        day: 'numeric', 
+        month: 'long',
+        year: 'numeric'
+    });
+    
+    // Capitalizar primera letra
+    document.getElementById('fechaTexto').textContent = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+    
+    grid.innerHTML = '';
+    section.style.display = 'block';
+
+    // Definir franjas horarias
+    const franjasHorarias = [
+        { nombre: 'Mañana', inicio: 8, fin: 12, intervalo: 30 },
+        { nombre: 'Tarde', inicio: 12, fin: 17, intervalo: 30 },
+        { nombre: 'Noche', inicio: 17, fin: 21, intervalo: 30 }
+    ];
+
+    // Crear selector por franjas
+    franjasHorarias.forEach(franja => {
+        const franjaContainer = document.createElement('div');
+        franjaContainer.className = 'franja-horaria';
+        
+        const franjaHeader = document.createElement('div');
+        franjaHeader.className = 'franja-header';
+        franjaHeader.innerHTML = `<h5><i class="fas fa-sun"></i> ${franja.nombre} (${franja.inicio}:00 - ${franja.fin}:00)</h5>`;
+        
+        const franjaGrid = document.createElement('div');
+        franjaGrid.className = 'franja-grid';
+        
+        // Generar horas para esta franja
+        for (let h = franja.inicio; h < franja.fin; h++) {
+            for (let m = 0; m < 60; m += franja.intervalo) {
+                const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+                const fullDateTime = `${dateStr}T${time}:00`;
+                
+                const btn = document.createElement('button');
+                btn.className = 'time-slot';
+                btn.innerHTML = time;
+                
+                // Verificar si esta hora ya está agendada
+                const yaAgendada = citasAgendadas.some(cita => cita.start === fullDateTime);
+                
+                if (yaAgendada) {
+                    btn.classList.add('ocupado');
+                    btn.title = 'Horario ocupado';
+                    btn.disabled = true;
+                    btn.innerHTML = `
+                        <span class="time-text">${time}</span>
+                        <i class="fas fa-lock"></i>
+                    `;
+                } else {
+                    btn.onclick = () => agendarDirecto(dateStr, time, btn);
+                    btn.innerHTML = `
+                        <span class="time-text">${time}</span>
+                        <i class="fas fa-calendar-plus"></i>
+                    `;
+                }
+                
+                franjaGrid.appendChild(btn);
+            }
+        }
+        
+        franjaContainer.appendChild(franjaHeader);
+        franjaContainer.appendChild(franjaGrid);
+        grid.appendChild(franjaContainer);
+    });
+
+    // También agregar un filtro rápido de horas
+    const filterContainer = document.createElement('div');
+    filterContainer.className = 'filtro-horas';
+    filterContainer.innerHTML = `
+        <div class="filtro-header">
+            <h6><i class="fas fa-filter"></i> Filtrar por disponibilidad:</h6>
+        </div>
+        <div class="filtro-botones">
+            <button class="filtro-btn active" data-filtro="todas">Todas las horas</button>
+            <button class="filtro-btn" data-filtro="disponibles">Solo disponibles</button>
+            <button class="filtro-btn" data-filtro="ocupadas">Solo ocupadas</button>
+        </div>
+    `;
+    grid.parentNode.insertBefore(filterContainer, grid);
+    
+    // Añadir funcionalidad de filtro
+    document.querySelectorAll('.filtro-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const filtro = this.dataset.filtro;
+            
+            // Actualizar botones activos
+            document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Aplicar filtro
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                switch(filtro) {
+                    case 'disponibles':
+                        slot.style.display = slot.classList.contains('ocupado') ? 'none' : '';
+                        break;
+                    case 'ocupadas':
+                        slot.style.display = slot.classList.contains('ocupado') ? '' : 'none';
+                        break;
+                    default:
+                        slot.style.display = '';
+                }
+            });
+        });
+    });
+    
+    // Scroll suave hacia los horarios
+    section.scrollIntoView({ behavior: 'smooth' });
+}
+
+function agendarDirecto(date, time, buttonElement) {
+    const fullDateTime = `${date}T${time}:00`;
+    
+    // 1. Marcar visualmente el botón como seleccionado
+    buttonElement.classList.add('selected');
+    buttonElement.innerHTML = `
+        <span class="time-text">${time}</span>
+        <i class="fas fa-check-circle"></i>
+    `;
+    
+    // 2. Crear objeto de cita con mejor visibilidad
+    const nuevaCita = {
+        id: `cita_${Date.now()}`,
+        title: '📚 CLASE',
+        start: fullDateTime,
+        backgroundColor: '#a8a054',
+        borderColor: '#8c8844',
+        textColor: 'white',
+        classNames: ['cita-destacada'],
+        extendedProps: {
+            fecha: date,
+            hora: time,
+            estado: 'confirmada'
+        }
+    };
+    
+    // 3. Agregar al calendario
+    calendar.addEvent(nuevaCita);
+    
+    // 4. Guardar en array y localStorage
+    citasAgendadas.push(nuevaCita);
+    localStorage.setItem('citasWorldSchool', JSON.stringify(citasAgendadas));
+    
+    // 5. Mostrar Modal de confirmación con mejor información
+    const fechaObj = new Date(date + 'T00:00:00');
+    const fechaFormateada = fechaObj.toLocaleDateString('es-ES', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    
+    document.getElementById('modalFecha').textContent = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+    document.getElementById('modalHora').textContent = time;
+    document.getElementById('confirmModal').style.display = 'flex';
+    
+    // 6. Actualizar visualmente todos los botones ocupados
+    setTimeout(() => {
+        document.querySelectorAll('.time-slot').forEach(slot => {
+            if (slot !== buttonElement && !slot.classList.contains('ocupado')) {
+                slot.disabled = false;
+                slot.style.pointerEvents = 'auto';
+            }
+        });
+    }, 2000);
+}
+
+
+    </script> 
+<!-- 
+<script>
+    let selectedDate = null;
+    let calendar = null;
+    let citasAgendadas = [];
+    let usuarioActual = null;
+
+    document.addEventListener('DOMContentLoaded', async function() {
+
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+
+        
+
+// Función para depurar
+function debugCitas() {
+    console.log('=== DEPURACIÓN DE CITAS ===');
+    console.log('Usuario:', usuarioActual);
+    console.log('Citas en memoria:', citasAgendadas);
+    
+    // Mostrar todas las citas en formato legible
+    citasAgendadas.forEach((cita, index) => {
+        console.log(`${index + 1}. ID: ${cita.id}, Fecha: ${cita.fecha}, Hora: ${cita.hora}, Título: ${cita.titulo}`);
+    });
+}
+
+// Botón de depuración (opcional - para testing)
+function agregarBotonDepuracion() {
+    const debugBtn = document.createElement('button');
+    debugBtn.innerHTML = '🔧 Debug';
+    debugBtn.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+    `;
+    debugBtn.onclick = debugCitas;
+    document.body.appendChild(debugBtn);
+}
+})
+
+</script> -->
+
+
+
+</body>
+</html> 

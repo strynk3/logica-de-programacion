@@ -1,0 +1,1807 @@
+/* CALENDARIO PAGE STYLES - VERSIÓN OPTIMIZADA */
+.calendario-main {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 3.5rem 1rem 2rem;
+    margin-top: 0;
+    gap: 1rem;
+}
+
+.calendario-section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.calendario-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+/* ===========================================
+   SECCIÓN DE PRESENTACIÓN Y CONTACTO
+   =========================================== */
+.presentacion-contacto {
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.presentacion-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f9f8f0 100%);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(168, 160, 84, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border: 2px solid rgba(168, 160, 84, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.presentacion-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to bottom, #a8a054, #8c8844, #c8c088);
+}
+
+.presentacion-content {
+    flex: 1;
+}
+
+.presentacion-content h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.presentacion-content h2 i {
+    color: #a8a054;
+}
+
+.presentacion-content > p {
+    color: #5d6d7e;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.contacto-info {
+    background: #fdfbf0;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba(168, 160, 84, 0.2);
+}
+
+.contacto-info h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contacto-info h3 i {
+    color: #a8a054;
+}
+
+.contacto-info > p {
+    color: #5d6d7e;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.telefono-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: white !important;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
+}
+
+.telefono-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+.telefono-link i {
+    font-size: 1.2rem;
+}
+
+.horario {
+    font-size: 0.85rem !important;
+    color: #7b8a8b !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.horario i {
+    color: #a8a054;
+}
+
+.presentacion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a8a054;
+    opacity: 0.8;
+}
+
+.presentacion-icon i {
+    font-size: 4rem;
+}
+
+/* ===========================================
+   HEADER DEL CALENDARIO
+   =========================================== */
+.calendario-header {
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+}
+
+.calendario-header h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-family: 'Georgia', serif;
+    font-weight: 600;
+}
+
+.calendario-header p {
+    font-size: 1rem;
+    color: #5d6d7e;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+/* ===========================================
+   CONTENEDOR DEL CALENDARIO
+   =========================================== */
+.calendario-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(168, 160, 84, 0.1);
+    width: 100%;
+}
+
+.calendario-controls {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.month-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.nav-btn {
+    background: linear-gradient(135deg, #a8a054, #8c8844);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(168, 160, 84, 0.2);
+}
+
+.nav-btn:hover {
+    background: linear-gradient(135deg, #8c8844, #6d6833);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(168, 160, 84, 0.3);
+}
+
+#currentMonth {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #2c3e50;
+    min-width: 200px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* ===========================================
+   CALENDARIO FULLCALENDAR
+   =========================================== */
+.calendar-wrapper {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+#calendar {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 550px !important;
+    width: 100% !important;
+}
+
+.fc {
+    --fc-border-color: #e1e5eb;
+    --fc-today-bg-color: rgba(168, 160, 84, 0.15);
+    --fc-button-bg-color: #a8a054;
+    --fc-button-border-color: #a8a054;
+    --fc-button-hover-bg-color: #8c8844;
+    --fc-button-hover-border-color: #8c8844;
+    --fc-button-active-bg-color: #6d6833;
+    --fc-button-active-border-color: #6d6833;
+    --fc-event-bg-color: #a8a054;
+    --fc-event-border-color: #8c8844;
+    --fc-event-text-color: white;
+    font-size: 0.95rem;
+}
+
+.fc .fc-toolbar {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.fc .fc-button {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.fc .fc-button:hover {
+    transform: translateY(-1px);
+}
+
+.fc .fc-daygrid-day {
+    border: 1px solid #f0f0f0;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+    background: rgba(168, 160, 84, 0.15) !important;
+    border: 2px solid #a8a054 !important;
+}
+
+.fc .fc-daygrid-day-number {
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.3rem;
+}
+
+.fc .fc-daygrid-day-top {
+    justify-content: center;
+    padding: 0.3rem 0;
+}
+
+.fc .fc-col-header-cell {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+    padding: 0.5rem 0;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.fc .fc-col-header-cell-cushion {
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.fc-event {
+    border-radius: 6px;
+    border: none;
+    padding: 6px 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.fc-daygrid-event {
+    margin: 2px 3px;
+}
+
+.fc-event-title {
+    font-weight: 600;
+    color: white;
+}
+
+/* Eventos destacados */
+.cita-destacada {
+    border: 2px solid #8c8844 !important;
+    border-radius: 6px !important;
+    box-shadow: 0 3px 6px rgba(168, 160, 84, 0.3) !important;
+    font-weight: 700 !important;
+    padding: 6px 8px !important;
+}
+
+.cita-destacada .fc-event-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+/* Indicador de días con eventos */
+.fc-daygrid-day.has-event {
+    background-color: rgba(168, 160, 84, 0.08) !important;
+    position: relative;
+}
+
+.fc-daygrid-day.has-event::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background: #a8a054;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.fc-daygrid-day.has-event .fc-daygrid-day-number {
+    color: #a8a054;
+    font-weight: 800;
+}
+
+/* ===========================================
+   SELECTOR DE HORAS ORGANIZADO POR FRANJAS
+   =========================================== */
+.time-slots-section {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(168, 160, 84, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.time-slots-section h4 {
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-slots-section h4 i {
+    color: #a8a054;
+}
+
+#fechaTexto {
+    color: #a8a054;
+    font-weight: 600;
+}
+
+/* Filtro de horas */
+.filtro-horas {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(168, 160, 84, 0.15);
+}
+
+.filtro-header h6 {
+    color: #2c3e50;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.8rem 0;
+}
+
+.filtro-header h6 i {
+    color: #a8a054;
+}
+
+.filtro-botones {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    background: white;
+    border: 2px solid #dee2e6;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filtro-btn:hover:not(.active) {
+    border-color: #a8a054;
+    color: #a8a054;
+    transform: translateY(-1px);
+}
+
+.filtro-btn.active {
+    background: #a8a054;
+    border-color: #a8a054;
+    color: white;
+}
+
+/* Franjas horarias */
+.franja-horaria {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.franja-horaria:last-child {
+    margin-bottom: 0;
+}
+
+.franja-header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.franja-header h5 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.franja-header h5 i {
+    color: #a8a054;
+    font-size: 1rem;
+}
+
+/* Grid de horas horizontal */
+.franja-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 0.8rem;
+}
+
+/* Botones de hora optimizados */
+.time-slot {
+    background: white;
+    border: 2px solid #e1e5eb;
+    border-radius: 8px;
+    padding: 0.9rem 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2c3e50;
+    height: 65px;
+    position: relative;
+    animation: slotAppear 0.3s ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes slotAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.time-slot:hover:not(.ocupado):not(.selected) {
+    border-color: #a8a054;
+    background: #fdfbf0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(168, 160, 84, 0.1);
+}
+
+.time-slot .time-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.time-slot i {
+    font-size: 0.9rem;
+    color: #a8a054;
+    transition: all 0.2s ease;
+}
+
+.time-slot:hover:not(.ocupado):not(.selected) i {
+    transform: scale(1.1);
+}
+
+/* Estados de los botones */
+.time-slot.selected {
+    background: linear-gradient(135deg, #a8a054, #8c8844);
+    border-color: #a8a054;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(168, 160, 84, 0.2);
+    animation: pulseSelected 2s infinite;
+}
+
+@keyframes pulseSelected {
+    0% {
+        box-shadow: 0 0 0 0 rgba(168, 160, 84, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(168, 160, 84, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(168, 160, 84, 0);
+    }
+}
+
+.time-slot.selected .time-text,
+.time-slot.selected i {
+    color: white;
+}
+
+.time-slot.ocupado {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-color: #dee2e6;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.time-slot.ocupado .time-text {
+    color: #adb5bd;
+    text-decoration: line-through;
+}
+
+.time-slot.ocupado i {
+    color: #dc3545;
+}
+
+/* Indicador visual de disponibilidad */
+.time-slot:not(.ocupado):not(.selected)::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: #28a745;
+    border-radius: 50%;
+    opacity: 0.7;
+}
+
+.time-slot.selected::after {
+    background: white;
+    opacity: 1;
+}
+
+/* ===========================================
+   MODAL DE CONFIRMACIÓN
+   =========================================== */
+.calendario-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #ffffff, #f9f8f0);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+    border: 2px solid #a8a054;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: modalAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-icon {
+    background: linear-gradient(135deg, #a8a054, #8c8844);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 8px 16px rgba(168, 160, 84, 0.3);
+}
+
+.modal-icon i {
+    font-size: 2.5rem;
+    color: white;
+}
+
+.modal-content h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.modal-details {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid #a8a054;
+}
+
+.modal-details p {
+    margin: 0.5rem 0;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-details strong {
+    color: #2c3e50;
+    min-width: 60px;
+    font-weight: 600;
+}
+
+.modal-details span {
+    color: #a8a054;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.modal-content > p {
+    color: #5d6d7e;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.modal-btn.primary {
+    background: #a8a054;
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    background: #8c8844;
+    transform: translateY(-1px);
+}
+
+.modal-btn.secondary {
+    background: #f8f9fa;
+    color: #2c3e50;
+    border: 2px solid #dee2e6;
+}
+
+.modal-btn.secondary:hover {
+    background: #e9ecef;
+    transform: translateY(-1px);
+}
+
+/* ===========================================
+   NAVEGACIÓN HEADER
+   =========================================== */
+.calendar-btn {
+    background: #a8a054;
+    color: white !important;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s ease !important;
+}
+
+.calendar-btn:hover {
+    background: #8c8844 !important;
+    transform: translateY(-1px) !important;
+}
+
+.calendar-btn.active {
+    background: #6d6833 !important;
+}
+
+/* ===========================================
+   RESPONSIVE DESIGN
+   =========================================== */
+
+/* Para tabletas */
+@media (max-width: 992px) {
+    .calendario-main {
+        padding: 1.5rem 1rem;
+        margin-top: 70px;
+    }
+    
+    .presentacion-card {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .presentacion-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .presentacion-icon i {
+        font-size: 3.5rem;
+    }
+    
+    .calendario-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    #currentMonth {
+        font-size: 1.3rem;
+        min-width: 180px;
+    }
+    
+    #calendar {
+        height: 500px !important;
+    }
+    
+    .franja-grid {
+        grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+        gap: 0.7rem;
+    }
+    
+    .time-slot {
+        height: 60px;
+        padding: 0.8rem 0.4rem;
+    }
+    
+    .time-slot .time-text {
+        font-size: 1rem;
+    }
+}
+
+/* Para móviles grandes */
+@media (max-width: 768px) {
+    .calendario-main {
+        padding: 1rem;
+        min-height: calc(100vh - 100px);
+    }
+    
+    .presentacion-contacto {
+        margin-bottom: 1.5rem;
+        padding: 0 0.5rem;
+    }
+    
+    .presentacion-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.2rem;
+        padding: 1.2rem;
+    }
+    
+    .presentacion-content h2 {
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+    
+    .contacto-info h3 {
+        justify-content: center;
+    }
+    
+    .telefono-link {
+        justify-content: center;
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .horario {
+        justify-content: center;
+    }
+    
+    .presentacion-icon i {
+        font-size: 3rem;
+    }
+    
+    .calendario-card {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    
+    .calendario-header h2 {
+        font-size: 1.4rem;
+    }
+    
+    #currentMonth {
+        font-size: 1.2rem;
+        min-width: 160px;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    #calendar {
+        height: 450px !important;
+    }
+    
+    .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+    
+    .fc .fc-toolbar-chunk {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .time-slots-section {
+        padding: 1.5rem;
+    }
+    
+    .time-slots-section h4 {
+        font-size: 1.2rem;
+    }
+    
+    .franja-horaria {
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .franja-header h5 {
+        font-size: 1rem;
+    }
+    
+    .franja-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 0.6rem;
+    }
+    
+    .time-slot {
+        height: 55px;
+        padding: 0.7rem 0.3rem;
+        font-size: 0.85rem;
+    }
+    
+    .time-slot .time-text {
+        font-size: 0.95rem;
+    }
+    
+    .filtro-botones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filtro-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .modal-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 576px) {
+    .calendario-main {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+    
+    .presentacion-card {
+        padding: 1rem;
+    }
+    
+    .presentacion-content h2 {
+        font-size: 1.1rem;
+    }
+    
+    .contacto-info {
+        padding: 0.8rem;
+    }
+    
+    .telefono-link {
+        width: 100%;
+        justify-content: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .presentacion-icon i {
+        font-size: 2.5rem;
+    }
+    
+    .calendario-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    #currentMonth {
+        font-size: 1.1rem;
+        min-width: 140px;
+    }
+    
+    #calendar {
+        height: 400px !important;
+    }
+    
+    .franja-horaria {
+        padding: 1rem;
+    }
+    
+    .franja-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+    }
+    
+    .time-slot {
+        height: 50px;
+        padding: 0.6rem 0.2rem;
+        font-size: 0.8rem;
+    }
+    
+    .time-slot .time-text {
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        padding: 1.2rem;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .modal-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Para móviles muy pequeños */
+@media (max-width: 400px) {
+    .calendario-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    #currentMonth {
+        font-size: 1rem;
+        min-width: 120px;
+    }
+    
+    .nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    #calendar {
+        height: 350px !important;
+    }
+    
+    .franja-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .time-slot {
+        height: 45px;
+    }
+}
+
+
+/* Estilos para el panel de usuario */
+.user-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.user-info-card {
+    background: linear-gradient(135deg, #a8a054 0%, #8c8844 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 8px 25px rgba(168, 160, 84, 0.2);
+}
+
+.user-avatar {
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.user-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+
+.user-details p {
+    margin: 0 0 15px 0;
+    opacity: 0.9;
+}
+
+.user-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.stat span {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.stat small {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.quick-actions {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.quick-actions h3 {
+    margin-top: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.action-btn {
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn:hover {
+    background: #a8a054;
+    color: white;
+    border-color: #a8a054;
+    transform: translateY(-2px);
+}
+
+.action-btn i {
+    font-size: 1.8rem;
+}
+
+.action-btn-small {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.action-btn-small:hover {
+    background: #e9ecef;
+}
+
+.calendar-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.view-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+}
+
+/* Formulario de agendar */
+.agendar-form-section {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-top: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.agendar-form-section h4 {
+    margin-top: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+#agendarForm input,
+#agendarForm textarea,
+#agendarForm select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+#agendarForm textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.submit-btn {
+    background: #a8a054;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #8c8844;
+}
+
+.cancel-btn {
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.cancel-btn:hover {
+    background: #e9ecef;
+}
+
+/* Lista de próximas clases */
+.proximas-clases {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.proximas-clases h3 {
+    margin-top: 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.clases-list {
+    margin-top: 20px;
+}
+
+.clase-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clase-item:hover {
+    background: #f8f9fa;
+    transform: translateX(5px);
+}
+
+.clase-fecha {
+    background: #a8a054;
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.clase-dia {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.clase-mes {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.clase-info h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.clase-info p {
+    margin: 0 0 5px 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.clase-estado {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.clase-estado.pendiente {
+    background: #ffeaa7;
+    color: #d35400;
+}
+
+.clase-estado.confirmada {
+    background: #55efc4;
+    color: #00b894;
+}
+
+.clase-estado.cancelada {
+    background: #fab1a0;
+    color: #e17055;
+}
+
+.no-clases {
+    text-align: center;
+    color: #666;
+    padding: 30px;
+    font-style: italic;
+}
+
+/* Modal de evento mejorado */
+.calendario-modal .modal-content {
+    max-width: 500px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.modal-details p {
+    margin: 10px 0;
+}
+
+.modal-details i {
+    width: 20px;
+    color: #a8a054;
+}
+
+.modal-btn.danger {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.modal-btn.danger:hover {
+    background: #c0392b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .user-panel {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .user-info-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .user-stats {
+        justify-content: center;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos para el header de usuario */
+.user-welcome {
+    color: #a8a054;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-left: 2px solid #a8a054;
+    margin-left: 10px;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.user-panel,
+.calendario-section,
+.proximas-clases {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para citas en el calendario */
+.fc-event {
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.fc-event-title {
+    font-weight: 600;
+}
+
+/* Estilo para días con citas */
+.fc-daygrid-day.fc-day-today {
+    background-color: rgba(168, 160, 84, 0.1) !important;
+}
+
+/* Botones de tiempo-slot mejorados */
+.time-slot {
+    transition: all 0.3s ease;
+}
+
+.time-slot:hover:not(.ocupado):not(.selected) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.time-slot.ocupado {
+    background-color: #e74c3c !important;
+    cursor: not-allowed;
+}
+
+.time-slot.selected {
+    background-color: #2ecc71 !important;
+    color: white;
+}
+
+.time-slot i {
+    margin-left: 5px;
+}
+
+.time-text {
+    font-weight: 600;
+}
+
+
+/* Mejorar visualización de eventos en calendario */
+.fc-daygrid-event {
+    border-radius: 4px;
+    padding: 2px 4px !important;
+    margin: 1px 2px !important;
+    font-size: 0.85em !important;
+}
+
+.fc-event-title {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fc-event-time {
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+/* Resaltar día actual */
+.fc-day-today {
+    background-color: rgba(168, 160, 84, 0.1) !important;
+}
+
+/* Punto indicador para días con eventos */
+.fc-daygrid-day-events {
+    min-height: 1.5em;
+}
+
+/* Estilo para botones ocupados */
+.time-slot.ocupado {
+    background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+    color: white !important;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.time-slot.ocupado:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Estilo para botones disponibles */
+.time-slot:not(.ocupado):not(.selected) {
+    background: linear-gradient(135deg, #a8a054, #8c8844) !important;
+    color: white;
+}
+
+.time-slot:not(.ocupado):not(.selected):hover {
+    background: linear-gradient(135deg, #8c8844, #a8a054) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+
+
+
+
+/* ===========================================
+   NUEVA SECCIÓN DE CONTACTO OPTIMIZADA
+   =========================================== */
+.presentacion-contacto {
+    width: 100%;
+    max-width: 1000px; /* Un poco más estrecho para que se vea elegante */
+    margin: 0 auto 2.5rem;
+    padding: 0 1rem;
+}
+
+.presentacion-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgba(168, 160, 84, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoración sutil de fondo */
+.presentacion-card::after {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(168, 160, 84, 0.03);
+    border-radius: 50%;
+}
+
+.presentacion-content {
+    flex: 1;
+    z-index: 2;
+}
+
+.badge {
+    background: rgba(168, 160, 84, 0.1);
+    color: #a8a054;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+
+.presentacion-content h2 {
+    color: #1a202c;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.presentacion-content p {
+    color: #718096;
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.contacto-footer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: #25D366; /* Color original WhatsApp */
+    color: white !important;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(37, 211, 102, 0.3);
+    background: #20ba5a;
+}
+
+.info-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-texto span {
+    font-size: 0.9rem;
+    color: #4a5568;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.info-texto i {
+    color: #a8a054;
+    width: 16px;
+}
+
+/* Icono visual derecho */
+.presentacion-visual {
+    padding-left: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-circle {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #fdfbf0 0%, #f5f2d0 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.icon-circle i {
+    font-size: 2.5rem;
+    color: #a8a054;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+    .presentacion-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .presentacion-visual {
+        display: none; /* Ocultar icono en móvil para ahorrar espacio */
+    }
+    
+    .presentacion-content p {
+        margin: 0 auto 1.5rem;
+    }
+    
+    .contacto-footer {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .whatsapp-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

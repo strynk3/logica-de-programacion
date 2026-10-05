@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juzgados Administrativos de León</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="principal.css" />
+  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+
+<body>
+  <div id="login-modal" class="login-modal hidden">
+    <div class="login-modal-content">
+      <div class="login-modal-header">
+        <h3>Acceso Restringido</h3>
+        <span class="close-login-modal" id="btn-close-login">&times;</span>
+      </div>
+      <div class="login-modal-body">
+        <p>Esta sección es solo para personal autorizado.</p>
+        <div class="form-group">
+          <label for="login-pass">Contraseña:</label>
+          <input type="password" id="login-pass" placeholder="Ingrese la contraseña (admin123)">
+          <div id="login-error" class="error-message hidden">Contraseña incorrecta</div>
+        </div>
+        <div class="modal-buttons">
+          <button id="btn-login" class="submit-btn">Ingresar</button>
+          <button id="btn-cancel" class="cancel-btn">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="citas-modal" class="citas-modal hidden">
+    <div class="citas-modal-content">
+      <div class="citas-modal-header">
+        <h3>Citas del Día</h3>
+        <span class="close-citas-modal">&times;</span>
+      </div>
+      <div class="citas-modal-body">
+        <p id="citas-fecha" style="font-weight: 600; margin-bottom: 1rem;"></p>
+        <div id="citas-lista"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="detalle-cita-modal" class="detalle-cita-modal hidden">
+    <div class="detalle-cita-modal-content">
+      <div class="detalle-cita-modal-header">
+        <h3>Detalles de la Cita</h3>
+        <span class="close-detalle-modal">&times;</span>
+      </div>
+      <div class="detalle-cita-modal-body">
+        <div id="detalle-cita-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <div class="nav-logo">Juzgados Administrativos</div>
+    <button class="nav-toggle" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="#inicio" class="nav-link active" data-section="inicio">Inicio</a></li>
+      <li><a href="#citas" class="nav-link" data-section="citas">Citas</a></li>
+      <li><a href="#calendario" class="nav-link" data-section="calendario">Calendario</a></li>
+      <li><a href="#actividad" class="nav-link" data-section="actividad">Actividad</a></li>
+    </ul>
+  </nav>
+
+  <main class="sections-container">
+    
+    <section id="inicio" class="section active">
+      <header class="hero-header">
+        <div class="hero-content">
+          <h1>Juzgados Administrativos Municipales de León</h1>
+          <p class="subtitle">Justicia, Transparencia y Servicio a la Ciudadanía</p>
+        </div>
+      </header>
+      
+      <div class="main-content">
+        <article class="mission-card" id="notificaciones-card">
+  <h2>Notificaciones Pendientes</h2>
+  <div id="lista-notificaciones">
+    <p style="color: var(--text-light); text-align: center;">No hay citas pendientes de revisión.</p>
+  </div>
+</article>
+        
+        <aside class="important-info">
+          <h3>Avisos Importantes</h3><br>
+          <ul class="info-list">
+            <li><strong>Horario:</strong> 8:00 a 16:00 hrs.</li>
+            <li><strong>Oficinas:</strong> Calle Juárez 237</li>
+            <li><strong>Requisito:</strong> Identificación oficial</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="citas" class="section">
+      <div class="section-wrapper">
+        <div class="appointment-intro">
+          <div class="intro-content">
+            <h2>Agendar Cita</h2>
+            <p>Para brindar un mejor servicio, hemos implementado el sistema de citas electrónicas. Puede agendar su cita de manera rápida y sencilla.</p>
+          </div>
+        </div>
+
+        <div class="form-container">
+          <form id="appointment-form" class="appointment-form">
+            <h3>Formulario de Cita</h3>
+            <div class="form-grid">
+              <div class="form-group full-width">
+                <label for="fullName">Nombre completo</label>
+                <input type="text" id="fullName" name="fullName" required>
+              </div>
+              <div class="form-group">
+                <label for="expediente">No. Expediente</label>
+                <input type="text" id="expediente" name="expediente" pattern="\d{4,7}">
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono de contacto</label>
+                <input type="tel" id="phone" name="phone" placeholder="10 dígitos" pattern="\d{10}" required>
+              </div>
+              <div class="form-group full-width">
+                <label for="tramite">Tipo de Trámite</label>
+                <select id="tramite" name="tramite" required>
+                  <option value="" disabled selected>Seleccione una opción...</option>
+                  <option value="consulta">Consulta de expedientes</option>
+                  <option value="devolucion">Devolución de documento</option>
+                  <option value="copia">Copia de expediente</option>
+                  <option value="otros">Otros</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fecha">Fecha Preferente</label>
+                <input type="date" id="fecha" name="fecha" required>
+              </div>
+              <div class="form-group">
+                <label for="hora">Hora</label>
+                <input type="time" id="hora" name="time" min="08:00" max="16:00" required>
+              </div>
+            </div>
+            <button type="submit" class="submit-btn">Confirmar Cita</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="calendario" class="section">
+      <div class="calendar-section">
+        <div class="calendar-header" style="text-align: center; margin-bottom: 2rem;">
+          <h2>Calendario de Citas</h2>
+          <p>Seleccione un día resaltado para ver las citas programadas</p>
+        </div>
+        
+        <div class="calendar-controls">
+          <button id="prev-month" class="calendar-nav-btn">&lt; Anterior</button>
+          <h3 id="current-month" style="margin: 0;">Mes 2026</h3>
+          <button id="next-month" class="calendar-nav-btn">Siguiente &gt;</button>
+        </div>
+        <div id="jquery-calendar"></div>
+      </div>
+    </section>
+
+    <section id="actividad" class="section">
+      <div class="calendar-section">
+        <div class="calendar-header">
+          <h2>Reportes de Actividad</h2>
+          <p>Descargue el historial de registros en formato Excel (CSV)</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+          <button class="submit-btn" onclick="descargarReporte(14)">Últimos 14 días</button>
+          <button class="submit-btn" style="background: var(--accent-color);" onclick="descargarReporte(30)">Último Mes</button>
+          <button class="submit-btn" style="background: var(--warning-color);" onclick="descargarReporte(365)">Último Año</button>
+        </div>
+
+        <div id="preview-container" style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem; text-align: center;">
+          </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2026 Juzgados Administrativos de León, Gto.</p>
+  </footer>
+
+  <script src="principal.js" type="module"></script>
+</body>
+</html>

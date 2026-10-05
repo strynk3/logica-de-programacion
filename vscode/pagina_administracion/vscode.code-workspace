@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"name": "vscode",
+			"path": ".."
+		},
+		{
+			"name": "Tanalyce",
+			"path": "../../Downloads/Tanalyce"
+		},
+		{
+			"name": "tanalyce_windows",
+			"path": "../../Downloads/tanalyce_windows"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "vscode"
+	}
+}
